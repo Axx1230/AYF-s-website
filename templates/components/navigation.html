@@ -1,0 +1,31 @@
+<nav
+    class="sticky top-0 z-50 {% block nav_class %}bg-[#0A0A0E]/95{% endblock %} backdrop-blur-md {% block nav_border %}border-b border-[#00E5FF]/20{% endblock %}">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="{{ url_for('home') }}"
+            class="text-xl font-bold {% block nav_brand_color %}text-white{% endblock %} tracking-tight">
+            Anas Yusuf Farhan
+        </a>
+        <div class="space-x-6 font-medium text-sm {% block nav_text_color %}text-[#F8F9FA]{% endblock %}">
+            <a href="{{ url_for('home') }}"
+                class="{% block home_link_class %}hover:text-[#00E5FF]{% endblock %} transition text-slate-100">
+                Home & Skills
+            </a>
+            <a href="{{ url_for('projects') }}"
+                class="{% block projects_link_class %}hover:text-[#00E5FF]{% endblock %} transition text-slate-100">
+                Work
+            </a>
+            <a href="{{ url_for('apps') }}"
+                class="{% block apps_link_class %}hover:text-[#00E5FF]{% endblock %} transition text-slate-100">
+                Live Apps
+            </a>
+            <a href="{{ url_for('arcade') }}"
+                class="{% block arcade_link_class %}hover:text-[#00E5FF]{% endblock %} transition text-slate-100">
+                Arcade
+            </a>
+            <a href="{{ url_for('contact') }}"
+                class="{% block contact_link_class %}hover:text-blue-600{% endblock %} transition text-slate-100">
+                Contact
+            </a>
+        </div>
+    </div>
+</nav>

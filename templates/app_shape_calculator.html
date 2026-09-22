@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Shape Calculator Demo | Portfolio{% endblock %}
+
+{% block apps_link_class %}text-[#00E5FF]{% endblock %}
+
+{% block content %}
+<section class="section-hero py-20">
+    <div class="max-w-5xl mx-auto px-4">
+        <div class="card p-10">
+            <div class="mb-10 text-center">
+                <p class="hero-badge mx-auto inline-block">Live app</p>
+                <h1 class="mt-4 text-4xl font-bold hero-title">Shape Calculator</h1>
+                <p class="mt-4 text-slate-300 leading-7">A browser-based geometry calculator matching the shape program from your repository. Select a shape and compute area, perimeter, or volume instantly.</p>
+            </div>
+
+            <form id="shape-calculator-app" class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+                <div class="space-y-6 rounded-3xl border border-slate-800 bg-[#07070b] p-8">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-200 mb-2">Choose a shape</label>
+                        <select id="shape-select" class="w-full rounded-3xl border border-slate-800 bg-[#0a0a0e] px-4 py-3 text-white focus:border-[#00E5FF] focus:outline-none">
+                            <option value="circle">Circle</option>
+                            <option value="ellipse">Ellipse</option>
+                            <option value="equilateral-triangle">Equilateral Triangle</option>
+                            <option value="cone">Cone</option>
+                            <option value="sphere">Sphere</option>
+                            <option value="cylinder">Cylinder</option>
+                        </select>
+                    </div>
+
+                    <div id="calculator-inputs" class="space-y-4"></div>
+
+                    <button type="button" id="calculate-shape-btn" class="btn btn-primary">Calculate</button>
+                    <button type="button" id="reset-shape-btn" class="btn btn-secondary">Reset</button>
+                </div>
+
+                <div class="rounded-3xl border border-slate-800 bg-[#07070b] p-8">
+                    <h2 class="text-2xl font-semibold text-white mb-4">Results</h2>
+                    <div id="calculator-results" class="space-y-4 text-slate-300">
+                        <p class="text-sm">Choose a shape and enter dimensions to see calculations here.</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

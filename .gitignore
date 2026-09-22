@@ -1,0 +1,41 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+venv/
+env/
+.env
+.env.local
+
+# Flask
+instance/
+.webassets-cache
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+
+# Temporary files
+*.tmp
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - My Bag</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script defer src="js/scripts.js"></script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <div class="topnav">
+      <a href="index.html" title="Home - Browse our collection of designer bags"
+        >My Bag</a
+      >
+      <div id="myLinks">
+        <a href="offers.html" title="Special offers and discounts">Offers</a>
+        <a href="limited-stock.html" title="Limited edition and exclusive bags"
+          >Limited Stock</a
+        >
+        <a href="oneofone.html" title="Unique, one-of-a-kind pieces"
+          >One Of One</a
+        >
+        <a href="styles.html" title="Get inspired with styling tips"
+          >Style Inspiration</a
+        >
+        <a href="gallery.html" title="View our complete collection"
+          >Product Gallery</a
+        >
+        <a href="trends.html" title="Latest fashion trends">Trends</a>
+        <a href="contact.html" class="active" title="Get in touch with us"
+          >Contact</a
+        >
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+
+    <!-- Contact & Company Info Section -->
+    <section id="contact-info" class="contact-info">
+      <div class="contact-container">
+        <!-- Contact Form Section -->
+        <div class="contact">
+          <h2>Contact Us</h2>
+          <form action="submit_form.php" method="POST" class="contact-form">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your Name"
+              required
+            />
+
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your Email"
+              required
+            />
+
+            <label for="message">Message:</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Your Message"
+              required
+            ></textarea>
+
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+        </div>
+
+        <!-- Company Info Section -->
+        <div id="company-info" class="company-info">
+          <h2>About My Bag</h2>
+          <p><strong>We are open:</strong></p>
+          <ul>
+            <li>Monday - Friday: 10:00 AM - 6:00 PM</li>
+            <li>Saturday: 11:00 AM - 5:00 PM</li>
+            <li>Sunday: Closed</li>
+          </ul>
+          <p>Location:</p>
+          <p>123 Fashion Street, Cityville, 12345</p>
+          <p>Telephone number:</p>
+          <p>+44 7407863415</p>
+          <p><strong>What We Promote:</strong></p>
+          <p>
+            At My Bag, we pride ourselves on offering the latest in women's
+            designer bags. Whether you're looking for classic pieces or limited
+            edition items, our collection is carefully curated to provide the
+            best in style, quality, and exclusivity.
+          </p>
+          <p>
+            If you're searching for the perfect bag to complement your wardrobe,
+            look no further—our selection features some of the most sought-after
+            brands in fashion.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map Section -->
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.7055404319863!2d-0.0765912416055962!3d51.51861799936746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761cb5bba5485f%3A0xfacc468d7e590e6!2s123%20Fashion%20St%2C%20London!5e0!3m2!1sen!2suk!4v1736760605197!5m2!1sen!2suk"
+        width="600"
+        height="450"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        &copy; 2025 My Bag. All Rights Reserved. | Based in Wembley Designer
+        Outlet
+      </p>
+    </footer>
+  </body>
+</html>

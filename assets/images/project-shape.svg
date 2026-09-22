@@ -1,0 +1,19 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title>Shape Calculator</title>
+  <defs>
+    <linearGradient id="shapeGlow" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#00E5FF" />
+      <stop offset="100%" stop-color="#9D4EDD" />
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="#0a0a0d" />
+  <rect x="140" y="120" width="1000" height="480" rx="38" fill="#07070b" stroke="url(#shapeGlow)" stroke-width="10" />
+  <g fill="#F8F9FA" opacity="0.9">
+    <circle cx="360" cy="340" r="80" fill="none" stroke="#FFEA00" stroke-width="18" />
+    <polygon points="760,420 860,220 960,420" fill="rgba(157,78,221,0.16)" stroke="#00E5FF" stroke-width="10" />
+    <line x1="360" y1="260" x2="360" y2="420" stroke="#00E5FF" stroke-width="10" />
+    <line x1="300" y1="340" x2="420" y2="340" stroke="#9D4EDD" stroke-width="10" />
+    <rect x="200" y="500" width="420" height="24" rx="12" />
+    <rect x="700" y="520" width="420" height="24" rx="12" />
+  </g>
+</svg>

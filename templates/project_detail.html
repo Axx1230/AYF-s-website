@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} | Portfolio{% endblock %}
+
+{% block content %}
+<section class="py-24 bg-[#0A0A0E] text-white">
+    <div class="max-w-5xl mx-auto px-4">
+        <div class="rounded-[2rem] border border-[#00E5FF]/20 bg-[#07070b] p-10 shadow-[0_30px_60px_rgba(0,229,255,0.12)]">
+            <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                <div>
+                    <span class="inline-flex rounded-full border border-[#FFEA00]/35 bg-[#FFEA00]/10 px-3 py-1 text-sm font-semibold text-[#FFEA00]">{{ project.category }}</span>
+                    <h1 class="mt-6 text-4xl font-bold text-[#F8F9FA]">{{ project.title }}</h1>
+                    <p class="mt-4 text-slate-300 leading-8">{{ project.summary }}</p>
+                </div>
+                <div class="space-x-3 pt-4 md:pt-0">
+                    {% if project.repo_url %}
+                    <a href="{{ project.repo_url }}" target="_blank" class="inline-flex items-center rounded-full border border-[#00E5FF]/50 bg-[#0A0A0E] px-5 py-3 text-sm font-semibold text-[#00E5FF] hover:border-[#9D4EDD] hover:text-[#9D4EDD] transition">View Code</a>
+                    {% endif %}
+                    {% if project.demo_url %}
+                    <a href="{{ project.demo_url }}" class="inline-flex items-center rounded-full bg-[#9D4EDD] px-5 py-3 text-sm font-semibold text-white hover:bg-[#7b3dc0] transition">Launch Demo</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="mt-10 grid gap-8 lg:grid-cols-2">
+                <div class="rounded-3xl border border-[#00E5FF]/15 bg-[#09090f] p-8">
+                    <h2 class="text-xl font-semibold text-[#9D4EDD] mb-4">The business problem</h2>
+                    <p class="text-slate-300 leading-7">{{ project.problem }}</p>
+                </div>
+                <div class="rounded-3xl border border-[#00E5FF]/15 bg-[#09090f] p-8">
+                    <h2 class="text-xl font-semibold text-[#9D4EDD] mb-4">The solution</h2>
+                    <p class="text-slate-300 leading-7">{{ project.solution }}</p>
+                </div>
+            </div>
+
+            <div class="mt-10 grid gap-8 lg:grid-cols-2">
+                <div>
+                    <h3 class="text-xl font-semibold text-[#F8F9FA] mb-4">Key features</h3>
+                    <ul class="space-y-3 text-slate-300">
+                        {% for feature in project.features %}
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1 h-2.5 w-2.5 rounded-full bg-[#00E5FF]"></span>
+                            <span>{{ feature }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-[#F8F9FA] mb-4">Tech stack</h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for tag in project.tech %}
+                        <span class="rounded-full border border-[#00E5FF]/20 bg-[#0A0A0E] px-3 py-1 text-xs font-medium text-[#00E5FF]">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            {% if project.code %}
+            <div class="mt-10">
+                <h3 class="text-xl font-semibold text-[#F8F9FA] mb-4">Example code</h3>
+                <pre class="overflow-x-auto rounded-3xl border border-[#00E5FF]/15 bg-[#020206] p-6 text-sm text-slate-200"><code>{{ project.code }}</code></pre>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

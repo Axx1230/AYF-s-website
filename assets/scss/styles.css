@@ -1,0 +1,15 @@
+body {
+  /* additional project-specific styles can go here */
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e6eef8;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+footer {
+  background: #0f1724;
+  color: #94a3b8;
+}/*# sourceMappingURL=styles.css.map */

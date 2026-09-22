@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Live Apps | Portfolio{% endblock %}
+
+{% block apps_link_class %}text-[#00E5FF]{% endblock %}
+
+{% block content %}
+<section class="section-hero py-24">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-14">
+            <p class="hero-badge mx-auto inline-block">Live application demos</p>
+            <h1 class="mt-6 text-5xl font-extrabold hero-title">Try the programs powering the portfolio.</h1>
+            <p class="mt-6 text-slate-300 max-w-2xl mx-auto">Interact with browser-based versions of your Python utilities and explore the same workflows used in the project folder.</p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2">
+            <article class="project-card">
+                <div class="project-card__content">
+                    <span class="hero-badge">Python quiz</span>
+                    <h2 class="project-card__title mt-5 text-2xl font-semibold">Interactive Quiz Engine</h2>
+                    <p class="mt-4 text-slate-300 leading-relaxed">A browser-based quiz experience that mirrors the Python quiz program. Practice questions with immediate feedback and scoring.</p>
+                    <a href="{{ url_for('apps_quiz') }}" class="btn btn-primary mt-8">Launch quiz demo</a>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-card__content">
+                    <span class="hero-badge">Shape calculator</span>
+                    <h2 class="project-card__title mt-5 text-2xl font-semibold">Geometry Calculator</h2>
+                    <p class="mt-4 text-slate-300 leading-relaxed">Use a live shape calculator to compute areas, perimeters, and volumes for common 2D and 3D shapes.</p>
+                    <a href="{{ url_for('apps_shape_calculator') }}" class="btn btn-primary mt-8">Open calculator</a>
+                </div>
+            </article>
+        </div>
+
+        <div class="mt-16 section-surface p-10 text-slate-200 rounded-[2rem]">
+            <h3 class="text-2xl font-semibold mb-4 text-white">Want the original source?</h3>
+            <p class="text-slate-400 leading-7">Each live demo is paired with the original Python program in the repository. Browse the GitHub links on the project pages to see the actual code and folder structure.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

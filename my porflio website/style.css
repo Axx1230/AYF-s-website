@@ -1,0 +1,348 @@
+/* ======================
+    Root Variables (Maximized Purple Focus)
+    ====================== */
+:root {
+    /* Main Palette */
+    --dark-primary: #1a1a1a;        /* Near-Black / Dark Gray (Dark/Primary) */
+    --vibrant-purple: #7c3aed;      /* Main Accent (Purple) */
+    --light-purple: #f3e8ff;        /* Soft Pastel Purple (New Background) */
+    --text-color: #333333;          /* Dark Text Gray (For main content) */
+    
+    /* Theme assignments */
+    --accent: var(--vibrant-purple);
+    --accent-dark: var(--dark-primary);
+    --dark: var(--dark-primary);
+    --light-bg: var(--light-purple); /* Background is now soft purple */
+    --light: #fff;
+    --text: var(--text-color);
+
+    /* Shadows */
+    --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 24px rgba(0,0,0,0.12);
+
+    /* Border Radius */
+    --radius: 10px;
+
+    /* Transition */
+    --transition: 0.3s ease;
+
+    /* Spacing (Kept original spacing units) */
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 4rem;
+}
+
+/* --- Global Enhancements --- */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 14vh; 
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--light-bg); /* Soft Purple Background */
+    color: var(--text); /* Default body text is dark gray */
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    color: var(--dark); /* Dark Gray */
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+a {
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+a:focus, button:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* Highlight selection for better UX */
+::selection {
+    background-color: var(--accent);
+    color: var(--light);
+}
+
+/* ======================
+    Header
+    ====================== */
+header {
+    background: var(--dark); /* Dark Gray */
+    color: var(--light); /* Text is white here for contrast against dark background */
+    padding: var(--space-xl) var(--space-md) var(--space-lg);
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+}
+
+header p {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--light); 
+}
+
+.profile-pic {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--accent); /* Vibrant Purple */
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+    background: var(--light);
+}
+
+.resume-btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.8rem;
+    background: var(--accent); /* Vibrant Purple */
+    color: var(--light);
+    border: none;
+    border-radius: 30px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+    transition: background var(--transition), transform var(--transition);
+}
+
+.resume-btn:hover {
+    background: var(--light); /* White Highlight */
+    color: var(--dark); /* Text changes to Dark Gray */
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* ======================
+    Navigation
+    ====================== */
+nav {
+    background: var(--dark); /* Dark Gray */
+    padding: 0.8rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: var(--shadow);
+}
+
+nav a {
+    color: var(--light);
+    margin: 0 1rem;
+    font-weight: 500;
+    transition: all var(--transition);
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+}
+
+nav a[href="#experience"] {
+    color: var(--light); 
+}
+
+nav a:hover {
+    background: var(--light); /* White Hover */
+    color: var(--dark); /* Text changes to Dark Gray */
+    transform: scale(1.05);
+}
+
+/* Contact link as a secondary CTA */
+nav a[href="#contact"] {
+    background: var(--accent); /* Vibrant Purple */
+    color: var(--light); 
+    font-weight: 700;
+}
+nav a[href="#contact"]:hover {
+    background: var(--light);
+    color: var(--dark);
+}
+
+/* ======================
+    Sections
+    ====================== */
+section {
+    padding: var(--space-xl) var(--space-md);
+    max-width: 1000px;
+    margin: auto;
+}
+
+section:not(:first-child) {
+    margin-top: var(--space-lg);
+}
+
+#about {
+    text-align: center;
+    /* FIX: Ensure About text is dark gray against the soft purple background */
+    color: var(--text); 
+}
+#about p {
+    font-size: 1.15rem;
+    max-width: 750px;
+    margin: 1.5rem auto 0;
+}
+
+/* Alternate background for readability */
+#skills, #projects, #experience { 
+    /* Primary Section Background is Purple */
+    background: var(--vibrant-purple); 
+    color: var(--light); /* FIX: All text inside these sections is WHITE for contrast */
+    border-radius: var(--radius);
+    padding: var(--space-lg);
+    margin-top: var(--space-xl);
+}
+
+/* Headings inside purple sections are WHITE */
+#skills h2, #projects h2, #experience h2 {
+    color: var(--light);
+}
+
+/* ======================
+    Cards & Grid Layout
+    ====================== */
+.skills, .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+}
+
+.card {
+    background: var(--light); /* Cards remain white for contrast */
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1.5px solid transparent;
+    transition: transform var(--transition), box-shadow var(--transition), border var(--transition);
+    /* FIX: Ensure text inside white card is dark gray */
+    color: var(--text);
+}
+
+.card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+    border: 1.5px solid var(--accent); /* Vibrant Purple Border */
+}
+
+.card h3 {
+    margin-top: 0;
+    color: var(--dark);
+}
+
+.card a {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    color: var(--accent); /* Vibrant Purple Link */
+    font-weight: 600;
+}
+
+.card a:hover {
+    color: var(--dark);
+}
+
+/* Skill Card Enhancements */
+.skill-card {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    min-height: 110px;
+    background: var(--light);
+    border-left: 6px solid var(--accent); /* Vibrant Purple Accent Line */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.skill-icon {
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--light-purple); /* Soft Purple Background */
+    color: var(--dark); /* Dark Gray Icon for contrast */
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+    border: 2px solid var(--dark);
+    margin-left: -3px;
+}
+.skill-content h3 {
+    margin: 0 0 0.2rem 0;
+    color: var(--dark);
+    font-size: 1.3rem;
+}
+.skill-content p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+/* Contact links inside main white section (About/Contact) */
+#contact {
+    /* FIX: Ensure Contact text is dark gray against the soft purple background */
+    color: var(--text);
+}
+.contact-links a {
+    color: var(--accent); /* Vibrant Purple link */
+}
+.contact-links a:hover {
+    color: var(--dark);
+    background: var(--light-bg); /* Soft Purple Background on hover */
+}
+
+/* ======================
+    Footer
+    ====================== */
+footer {
+    background: var(--dark); /* Dark Gray */
+    color: var(--light);
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+    font-size: 0.9rem;
+}
+
+/* ======================
+    Responsive
+    ====================== */
+@media (max-width: 768px) {
+    .skills, .projects {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    header p {
+        font-size: 1.1rem;
+    }
+    section {
+        padding: var(--space-lg) var(--space-md);
+    }
+    .profile-pic {
+        width: 100px;
+        height: 100px;
+    }
+    nav a {
+        margin: 0 0.5rem;
+    }
+}

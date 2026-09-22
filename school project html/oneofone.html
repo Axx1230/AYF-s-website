@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>One Of One - My Bag</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script defer src="js/scripts.js"></script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <div class="topnav">
+      <a href="index.html" title="Home - Browse our collection of designer bags">My Bag</a>
+      <div id="myLinks">
+        <a href="offers.html" title="Special offers and discounts">Offers</a>
+        <a href="limited-stock.html" title="Limited edition and exclusive bags">Limited Stock</a>
+        <a href="oneofone.html" class="active" title="Unique, one-of-a-kind pieces">One Of One</a>
+        <a href="styles.html" title="Get inspired with styling tips">Style Inspiration</a>
+        <a href="gallery.html" title="View our complete collection">Product Gallery</a>
+        <a href="trends.html" title="Latest fashion trends">Trends</a>
+        <a href="contact.html" title="Get in touch with us">Contact</a>
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+
+    <!-- Product Section -->
+    <section class="products">
+      <h2>One Of One</h2>
+
+      <div class="product-grid">
+        <div class="product-box" onclick="openFullscreen('oneofone1.jpg', 'Exclusive Clutch', '$250')">
+          <img src="images/oneofone1.jpg" alt="Exclusive Clutch" />
+          <h3>Exclusive Clutch</h3>
+          <p>$250</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('oneofone2.jpg', 'Custom Tote Bag', '$300')">
+          <img src="images/oneofone2.jpg" alt="Custom Tote Bag" />
+          <h3>Custom Tote Bag</h3>
+          <p>$300</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('oneofone3.jpg', 'Artisan Handbag', '$400')">
+          <img src="images/oneofone3.jpg" alt="Artisan Handbag" />
+          <h3>Artisan Handbag</h3>
+          <p>$400</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('oneofone4.jpg', 'Luxury Backpack', '$350')">
+          <img src="images/oneofone4.jpg" alt="Luxury Backpack" />
+          <h3>Luxury Backpack</h3>
+          <p>$350</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('oneofone5.jpg', 'Designer Crossbody', '$280')">
+          <img src="images/oneofone5.jpg" alt="Designer Crossbody" />
+          <h3>Designer Crossbody</h3>
+          <p>$280</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('oneofone6.jpg', 'Elegant Evening Bag', '$500')">
+          <img src="images/oneofone6.jpg" alt="Elegant Evening Bag" />
+          <h3>Elegant Evening Bag</h3>
+          <p>$500</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 My Bag. All Rights Reserved. | Based in Wembley Designer Outlet</p>
+    </footer>
+
+    <!-- Fullscreen Modal -->
+    <div id="fullscreenModal" class="modal hidden">
+      <span class="close" onclick="closeFullscreen()">&times;</span>
+      <img id="modalImage" class="modal-content" />
+      <div id="modalCaption"></div>
+    </div>
+  </body>
+</html>

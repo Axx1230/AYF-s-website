@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Arcade | Code Lab{% endblock %}
+
+{% block arcade_link_class %}text-[#00E5FF]{% endblock %}
+
+{% block content %}
+<section class="section-hero py-24">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-14">
+            <p class="hero-badge mx-auto inline-block">Arcade / Code Lab</p>
+            <h1 class="mt-6 text-5xl font-extrabold hero-title">Live projects, games, and code experiences.</h1>
+            <p class="mt-6 text-lg text-slate-300 max-w-3xl mx-auto">Launch working demos and inspect the source code for each program. This page is your directory to the apps and utilities built in the portfolio.</p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+            {% for item in arcade_items %}
+            <article class="project-card">
+                <div class="project-card__image">
+                    <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.title }} preview">
+                    <div class="project-card__overlay"></div>
+                </div>
+                <div class="project-card__content">
+                    <span class="hero-badge">Code Lab</span>
+                    <h2 class="project-card__title mt-5 text-2xl font-semibold">{{ item.title }}</h2>
+                    <p class="mt-4 text-slate-300 leading-relaxed">{{ item.description }}</p>
+                    <div class="project-card__tags mt-6">
+                        {% for tag in item.tags %}
+                        <span class="tag-pill">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3">
+                        <a href="{{ item.demo_url }}" class="btn btn-primary">Play now</a>
+                        <a href="{{ item.source_url }}" target="_blank" class="btn btn-secondary">View source</a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
