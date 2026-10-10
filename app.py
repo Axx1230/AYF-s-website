@@ -222,6 +222,82 @@ if __name__ == '__main__':
     print('This script is intended to be used as a command-line calculator.')
 ''',
     },
+    {
+'slug': 'collaborative-text-editor',
+'title': 'CRDT Collaborative Text Editor',
+'category': 'Real-time Collaboration',
+'summary': 'An offline-first writing workspace that merges concurrent edits and syncs between browser tabs.',
+'problem': 'Shared documents need to stay usable offline and reconcile simultaneous edits without overwriting a teammate’s work.',
+'solution': 'A compact replicated growable array (RGA) demo persists edits locally and exchanges operations between open tabs.',
+'features': [
+    'Edit offline with automatic local persistence',
+    'Merge concurrent character insertions and deletions deterministically',
+    'Sync document operations across tabs with BroadcastChannel',
+    'Restore the latest document after a page reload',
+],
+'tech': ['JavaScript', 'RGA CRDT', 'BroadcastChannel', 'localStorage'],
+'repo_url': '',
+'image_url': 'images/project-report.svg',
+'demo_url': '/demos/collaborative-editor',
+'code': '''// Each inserted character has a stable actor:counter ID.
+// Concurrent siblings are ordered deterministically by ID.
+const operation = {
+    type: 'insert',
+    id: `${actor}:${counter++}`,
+    after: previousCharacterId,
+    value: 'A',
+};''',
+    },
+    {
+'slug': 'event-driven-pipeline',
+'title': 'Event-Driven Trading Pipeline',
+'category': 'Distributed Systems',
+'summary': 'A live stock-trading event stream with independent processing stages and an operations dashboard.',
+'problem': 'Trading and telemetry workloads need decoupled services, observable event flow, and clear backpressure signals.',
+'solution': 'An interactive event-broker dashboard simulates market events moving through ingest, normalization, and portfolio services.',
+'features': [
+    'Live stream controls with event-type filtering',
+    'Broker queue depth and processing-latency indicators',
+    'Independent service stages with per-stage throughput',
+    'Recent event log with accepted and rejected trade outcomes',
+],
+'tech': ['JavaScript', 'Event-driven design', 'RabbitMQ concepts', 'Live dashboard'],
+'repo_url': '',
+'image_url': 'images/project-reporting.svg',
+'demo_url': '/demos/event-pipeline',
+'code': '''// Producer -> broker -> independently processed events
+channel.publish('market.trades', {
+    symbol: 'ACME',
+    quantity: 12,
+    price: 104.25,
+    timestamp: Date.now(),
+});''',
+    },
+    {
+'slug': 'distributed-api-gateway',
+'title': 'Distributed Rate-Limiting API Gateway',
+'category': 'API Platform',
+'summary': 'An API gateway playground for route selection, JWT decision flows, and sliding-window rate limits.',
+'problem': 'Public APIs need predictable traffic limits and consistent authentication before requests reach downstream services.',
+'solution': 'A request-by-request gateway simulation visualizes token decisions, rolling-window quotas, routing, and analytics.',
+'features': [
+    'Rolling-window request quotas per client',
+    'JWT fixture outcomes for valid, expired, and invalid tokens',
+    'Path-based routing to mock downstream services',
+    'Live request, rejection, and route analytics',
+],
+'tech': ['JavaScript', 'API Gateway', 'JWT concepts', 'Sliding window'],
+'repo_url': '',
+'image_url': 'images/project-api.svg',
+'demo_url': '/demos/api-gateway',
+'code': '''const recent = requests.filter(
+    timestamp => timestamp > now - windowMs
+);
+
+if (recent.length >= limit) {
+    return { status: 429, route: null };
+}''',
+    },
  ]
 
 arcade_items = [
@@ -264,7 +340,7 @@ def find_project(slug):
 
 @app.route('/')
 def home():
-    return render_template('index.html', featured_projects=portfolio_projects[:3])
+    return render_template('index.html', featured_projects=portfolio_projects)
 
 @app.route('/projects')
 def projects():
@@ -292,6 +368,18 @@ def apps_quiz():
 @app.route('/apps/shape-calculator')
 def apps_shape_calculator():
     return render_template('app_shape_calculator.html')
+
+@app.route('/demos/collaborative-editor')
+def collaborative_editor_demo():
+    return render_template('demo_collaborative_editor.html')
+
+@app.route('/demos/event-pipeline')
+def event_pipeline_demo():
+    return render_template('demo_event_pipeline.html')
+
+@app.route('/demos/api-gateway')
+def api_gateway_demo():
+    return render_template('demo_api_gateway.html')
 
 @app.route('/contact')
 def contact():

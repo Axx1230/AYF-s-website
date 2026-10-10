@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}API Gateway Demo | Portfolio{% endblock %}
+
+{% block content %}
+<section class="demo-shell py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-4" data-demo="gateway">
+        <a class="demo-back" href="{{ url_for('projects') }}">← Back to projects</a>
+        <div class="demo-heading">
+            <span class="hero-badge">Gateway · Traffic policy</span>
+            <h1 class="mt-5 text-4xl font-extrabold hero-title md:text-5xl">One front door. Clear decisions.</h1>
+            <p class="mt-4 max-w-3xl text-slate-300">Send requests through a miniature gateway to explore authentication outcomes, rolling-window quotas, and path-based routing.</p>
+        </div>
+        <div class="demo-notice mt-8" role="note">
+            <strong>Prototype scope:</strong> This is a single-tab simulation. Rate-limit state lives in memory, and the JWT selector chooses canned outcomes—it does not validate cryptographic signatures. Production needs a shared Redis store and server-side JWT verification.
+        </div>
+
+        <div class="metric-grid mt-6">
+            <article class="metric-card"><span>Total requests</span><strong id="gateway-total">0</strong><small>Since this page opened</small></article>
+            <article class="metric-card"><span>Forwarded</span><strong id="gateway-forwarded">0</strong><small>Passed gateway policies</small></article>
+            <article class="metric-card"><span>Rate limited</span><strong id="gateway-limited">0</strong><small>HTTP 429 responses</small></article>
+            <article class="metric-card"><span>Unauthorized</span><strong id="gateway-unauthorized">0</strong><small>HTTP 401 responses</small></article>
+        </div>
+
+        <div class="gateway-layout mt-6">
+            <section class="demo-panel">
+                <div class="panel-heading"><div><h2 class="text-lg font-semibold text-white">Request playground</h2><p class="text-sm text-slate-400">Configure a request, then send it through the policy chain.</p></div></div>
+                <div class="gateway-form">
+                    <label for="gateway-path">Request path</label>
+                    <select id="gateway-path" class="demo-select">
+                        <option value="/api/v1/quotes">GET /api/v1/quotes</option>
+                        <option value="/api/v1/orders">POST /api/v1/orders</option>
+                        <option value="/api/v1/portfolio">GET /api/v1/portfolio</option>
+                        <option value="/api/v1/unknown">GET /api/v1/unknown</option>
+                    </select>
+                    <label for="gateway-client">Client ID</label>
+                    <input id="gateway-client" class="demo-input" value="demo-client" maxlength="32">
+                    <label for="gateway-token">JWT fixture</label>
+                    <select id="gateway-token" class="demo-select">
+                        <option value="valid">Valid demo token</option>
+                        <option value="expired">Expired demo token</option>
+                        <option value="invalid">Invalid-signature fixture</option>
+                    </select>
+                    <label for="gateway-limit">Quota per 10 seconds</label>
+                    <select id="gateway-limit" class="demo-select">
+                        <option value="5">5 requests</option>
+                        <option value="10" selected>10 requests</option>
+                        <option value="20">20 requests</option>
+                    </select>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <button id="gateway-send" class="btn btn-primary" type="button">Send request</button>
+                        <button id="gateway-burst" class="btn btn-secondary" type="button">Send burst of 5</button>
+                    </div>
+                </div>
+                <div id="gateway-result" class="gateway-result mt-5" aria-live="polite">Ready to evaluate a request.</div>
+            </section>
+
+            <section class="demo-panel">
+                <div class="panel-heading"><div><h2 class="text-lg font-semibold text-white">Request policy chain</h2><p class="text-sm text-slate-400">Requests stop at the first failed policy.</p></div></div>
+                <ol class="policy-list">
+                    <li><span class="policy-number">01</span><span><strong>Match route</strong><small>Resolve path to a service</small></span><span class="policy-state">Route map</span></li>
+                    <li><span class="policy-number">02</span><span><strong>Verify JWT</strong><small>Check the selected fixture outcome</small></span><span class="policy-state">Auth</span></li>
+                    <li><span class="policy-number">03</span><span><strong>Sliding window</strong><small>Count this client’s last 10 seconds</small></span><span class="policy-state">Quota</span></li>
+                    <li><span class="policy-number">04</span><span><strong>Forward request</strong><small>Pass allowed traffic downstream</small></span><span class="policy-state">Proxy</span></li>
+                </ol>
+                <div class="route-map mt-6">
+                    <h3 class="text-sm font-semibold text-slate-200">Route table</h3>
+                    <div><code>/api/v1/quotes</code><span>quotes-service</span></div>
+                    <div><code>/api/v1/orders</code><span>orders-service</span></div>
+                    <div><code>/api/v1/portfolio</code><span>portfolio-service</span></div>
+                </div>
+            </section>
+        </div>
+
+        <section class="demo-panel mt-6">
+            <div class="panel-heading"><div><h2 class="text-lg font-semibold text-white">Recent decisions</h2><p class="text-sm text-slate-400">Gateway response and matched upstream for each request</p></div><button id="gateway-clear" class="btn btn-secondary" type="button">Clear history</button></div>
+            <div class="event-table-wrap">
+                <table class="event-table">
+                    <thead><tr><th>Time</th><th>Client</th><th>Request</th><th>Upstream</th><th>Response</th></tr></thead>
+                    <tbody id="gateway-history"><tr><td colspan="5" class="empty-state">No requests yet. Send one to inspect the decision path.</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/demos.js') }}" defer></script>
+{% endblock %}

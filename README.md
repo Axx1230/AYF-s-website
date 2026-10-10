@@ -83,7 +83,18 @@ python app.py
 
 - **Home** (`/`) — Hero section with introduction and technical skills
 - **Projects** (`/projects`) — Showcase of featured work
+- **Interactive systems demos** — Local-first collaboration (`/demos/collaborative-editor`), event-flow monitoring (`/demos/event-pipeline`), and gateway policy analytics (`/demos/api-gateway`)
 - **Contact** (`/contact`) — Dark-themed contact page with email and social links
+
+## Interactive Systems Demos
+
+The three systems demos are browser-based portfolio prototypes, not deployed distributed services:
+
+- **Collaborative editor:** a small RGA-style CRDT persists its operation log in `localStorage` and syncs across open tabs with `BroadcastChannel`. It does not sync between devices or use a hosted WebSocket server.
+- **Event-driven pipeline:** generated sample events animate through producer, broker, and consumer stages. No RabbitMQ/Kafka broker or microservice processes are running.
+- **API gateway:** the playground simulates route matching, rolling-window quotas, and JWT fixture outcomes in one browser tab. It does not perform cryptographic JWT verification or use Redis.
+
+Open each demo from the **Projects** page. These experiences demonstrate the concepts interactively while keeping the portfolio self-contained.
 
 ## 🛠️ Technology Stack
 
@@ -166,4 +177,3 @@ java HelloWorld
 ## 📄 License
 
 © 2026 Anas Yusuf Farhan. All rights reserved.
-

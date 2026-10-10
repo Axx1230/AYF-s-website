@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Event-Driven Pipeline Demo | Portfolio{% endblock %}
+
+{% block content %}
+<section class="demo-shell py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-4" data-demo="pipeline">
+        <a class="demo-back" href="{{ url_for('projects') }}">← Back to projects</a>
+        <div class="demo-heading">
+            <span class="hero-badge">Event-driven · Observability</span>
+            <h1 class="mt-5 text-4xl font-extrabold hero-title md:text-5xl">Market events, moving in real time.</h1>
+            <p class="mt-4 max-w-3xl text-slate-300">Watch sample trades flow through independent processing stages. Pause the producer, filter the stream, or publish your own event.</p>
+        </div>
+        <div class="demo-notice mt-8" role="note">
+            <strong>Prototype scope:</strong> Events and service metrics are generated in this browser. The broker and service cards illustrate an event-driven design; no RabbitMQ/Kafka cluster or microservices are running.
+        </div>
+
+        <div class="metric-grid mt-6">
+            <article class="metric-card"><span>Events processed</span><strong id="pipeline-processed">0</strong><small>Since this page opened</small></article>
+            <article class="metric-card"><span>Broker queue</span><strong id="pipeline-queue">0</strong><small>Messages waiting</small></article>
+            <article class="metric-card"><span>Avg. latency</span><strong id="pipeline-latency">—</strong><small>Simulated end-to-end</small></article>
+            <article class="metric-card"><span>Consumer health</span><strong class="metric-good" id="pipeline-health">Healthy</strong><small>All stages responding</small></article>
+        </div>
+
+        <div class="demo-panel mt-6">
+            <div class="panel-heading">
+                <div>
+                    <h2 class="text-lg font-semibold text-white">Service topology</h2>
+                    <p class="text-sm text-slate-400">Producer → broker → independently scaled consumers</p>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <label class="sr-only" for="pipeline-filter">Filter event stream</label>
+                    <select id="pipeline-filter" class="demo-select">
+                        <option value="all">All events</option>
+                        <option value="trade">Trades</option>
+                        <option value="alert">Risk alerts</option>
+                        <option value="quote">Quotes</option>
+                    </select>
+                    <button id="pipeline-toggle" class="btn btn-primary" type="button">Pause stream</button>
+                    <button id="pipeline-publish" class="btn btn-secondary" type="button">Publish sample trade</button>
+                </div>
+            </div>
+            <div class="pipeline-flow">
+                <article class="service-node"><span class="service-icon">↗</span><span class="service-label">Market feed</span><strong>Producer</strong><small id="pipeline-rate">1 event / 2 sec</small></article>
+                <span class="flow-arrow" aria-hidden="true">→</span>
+                <article class="service-node service-broker"><span class="service-icon">▤</span><span class="service-label">Topic · market.events</span><strong>Message broker</strong><small id="pipeline-broker">0 queued</small></article>
+                <span class="flow-arrow" aria-hidden="true">→</span>
+                <div class="service-consumers">
+                    <article class="service-node"><span class="service-icon">⌁</span><span class="service-label">Consumer group A</span><strong>Normalizer</strong><small id="pipeline-normalizer">0 processed</small></article>
+                    <article class="service-node"><span class="service-icon">◈</span><span class="service-label">Consumer group B</span><strong>Risk & portfolio</strong><small id="pipeline-risk">0 processed</small></article>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-panel mt-6">
+            <div class="panel-heading">
+                <div><h2 class="text-lg font-semibold text-white">Live event stream</h2><p class="text-sm text-slate-400">Most recent messages appear first</p></div>
+                <span id="pipeline-stream-state" class="status-pill"><span class="status-dot"></span> Stream running</span>
+            </div>
+            <div class="event-table-wrap">
+                <table class="event-table">
+                    <thead><tr><th>Time</th><th>Event</th><th>Symbol</th><th>Details</th><th>Result</th></tr></thead>
+                    <tbody id="pipeline-events"><tr><td colspan="5" class="empty-state">Waiting for the first market event…</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/demos.js') }}" defer></script>
+{% endblock %}
