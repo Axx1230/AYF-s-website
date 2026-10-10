@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stylish Calculator</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f0f0f5;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .calculator {
+        background: #222;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    #screen {
+        height: 50px;
+        width: 100%;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        border: none;
+        padding: 10px;
+        font-size: 24px;
+        text-align: right;
+        background: #333;
+        color: #fff;
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+        overflow-x: auto;       /* horizontal scrolling */
+        white-space: nowrap;    /* keep numbers on one line */
+    }
+
+    /* Hide scrollbar in WebKit browsers */
+    #screen::-webkit-scrollbar {
+        display: none;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 60px);
+        gap: 10px;
+    }
+
+    button {
+        height: 60px;
+        font-size: 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 4px #999;
+    }
+
+    button:hover {
+        transform: translateY(2px);
+        box-shadow: 0 2px #666;
+    }
+
+    .num {
+        background: #444;
+        color: #fff;
+    }
+
+    .op {
+        background: #ff9500;
+        color: #fff;
+    }
+
+    #clear {
+        background: #ff3b30;
+        color: #fff;
+    }
+
+    #equals {
+        background: #34c759;
+        color: #fff;
+    }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" id="screen" value="0" readonly>
+
+    <div class="buttons">
+        <button class="num">1</button>
+        <button class="num">2</button>
+        <button class="num">3</button>
+        <button class="op">+</button>
+
+        <button class="num">4</button>
+        <button class="num">5</button>
+        <button class="num">6</button>
+        <button class="op">-</button>
+
+        <button class="num">7</button>
+        <button class="num">8</button>
+        <button class="num">9</button>
+        <button class="op">*</button>
+
+        <button class="num">0</button>
+        <button id="clear">C</button>
+        <button id="equals">=</button>
+        <button class="op">/</button>
+    </div>
+</div>
+
+<script>
+let screen = document.getElementById('screen');
+let currentInput = '';
+
+function updateScreen() {
+    screen.value = currentInput || '0';
+    screen.scrollLeft = screen.scrollWidth; // scroll to show last digits
+}
+
+// Handle number buttons
+document.querySelectorAll('.num').forEach(button => {
+    button.addEventListener('click', () => {
+        currentInput += button.textContent;
+        updateScreen();
+    });
+});
+
+// Handle operator buttons
+document.querySelectorAll('.op').forEach(button => {
+    button.addEventListener('click', () => {
+        if (currentInput && !/[+\-*/]$/.test(currentInput)) {
+            currentInput += button.textContent;
+            updateScreen();
+        }
+    });
+});
+
+// Clear button
+document.getElementById('clear').addEventListener('click', () => {
+    currentInput = '';
+    updateScreen();
+});
+
+// Equals button
+document.getElementById('equals').addEventListener('click', () => {
+    try {
+        currentInput = eval(currentInput).toString();
+    } catch {
+        currentInput = 'Error';
+    }
+    updateScreen();
+});
+</script>
+
+</body>
+</html>

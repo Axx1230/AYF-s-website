@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Anas Yusuf Farhan | Portfolio{% endblock %}
+
+{% block home_link_class %}text-[#00E5FF]{% endblock %}
+
+{% block content %}
+<header class="section-hero py-28">
+    <div class="max-w-6xl mx-auto px-4 grid gap-12 lg:grid-cols-[1.2fr_0.8fr] items-center">
+        <div>
+            <span class="hero-badge">Backend & Automation for business owners</span>
+            <h1 class="mt-6 text-5xl font-extrabold hero-title leading-tight">Build reliable Python automation, Java APIs, and business-focused software that scales.</h1>
+            <p class="mt-6 text-lg text-slate-300 max-w-3xl leading-relaxed">I help companies reduce manual work, automate reporting, and ship dependable backend systems on time. Explore portfolio projects, live demos, and the new Arcade / Code Lab for instant access to working programs.</p>
+            <div class="mt-10 flex flex-wrap gap-4">
+                <a href="{{ url_for('projects') }}" class="btn btn-primary">Explore projects</a>
+                <a href="{{ url_for('arcade') }}" class="btn btn-secondary">Open the code lab</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="text-sm uppercase tracking-[0.3em] text-slate-400">Quick snapshot</div>
+            <div class="mt-8 space-y-5 text-slate-200">
+                <p><strong class="text-white">Python automation</strong> for recurring reporting, data extraction, and operational workflows.</p>
+                <p><strong class="text-white">Java backend systems</strong> built with clean API routes, secure data access, and production readiness.</p>
+                <p><strong class="text-white">Live demos</strong> so clients can explore working tools directly from the portfolio.</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="py-24">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-14">
+            <p class="hero-badge mx-auto inline-block">Featured solutions</p>
+            <h2 class="mt-6 text-4xl font-extrabold hero-title">Selected client-impact projects</h2>
+            <p class="mt-5 text-slate-400 max-w-3xl mx-auto">A quick tour of the programs and APIs that demonstrate business value, performance, and reliability.</p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+            {% for project in featured_projects %}
+            <article class="project-card">
+                <div class="project-card__image">
+                    <img src="{{ url_for('static', filename=project.image_url) }}" alt="{{ project.title }} preview">
+                    <div class="project-card__overlay"></div>
+                </div>
+                <div class="project-card__content">
+                    <span class="hero-badge">{{ project.category }}</span>
+                    <h3 class="project-card__title mt-5 text-2xl font-semibold">{{ project.title }}</h3>
+                    <p class="mt-4 text-slate-300 leading-relaxed">{{ project.summary }}</p>
+                    <div class="project-card__tags mt-6">
+                        {% for tag in project.tech %}
+                        <span class="tag-pill">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3">
+                        {% if project.demo_url %}
+                        <a href="{{ project.demo_url }}" class="btn btn-primary">Try demo</a>
+                        {% endif %}
+                        <a href="{{ url_for('project_detail', slug=project.slug) }}" class="btn btn-secondary">Read more</a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

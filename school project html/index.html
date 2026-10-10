@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - My Bag</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script defer src="js/scripts.js"></script>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <div class="topnav">
+      <a
+        href="index.html"
+        class="active"
+        title="Home - Browse our collection of designer bags"
+        >My Bag</a
+      >
+      <div id="myLinks">
+        <a href="offers.html" title="Special offers and discounts">Offers</a>
+        <a href="limited-stock.html" title="Limited edition and exclusive bags"
+          >Limited Stock</a
+        >
+        <a href="oneofone.html" title="Unique, one-of-a-kind pieces"
+          >One Of One</a
+        >
+        <a href="styles.html" title="Get inspired with styling tips"
+          >Style Inspiration</a
+        >
+        <a href="gallery.html" title="View our complete collection"
+          >Product Gallery</a
+        >
+        <a href="trends.html" title="Latest fashion trends">Trends</a>
+        <a href="contact.html" title="Get in touch with us">Contact</a>
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <h1>Welcome to My Bag</h1>
+      <p>Your destination for exclusive designer bags</p>
+    </section>
+
+    <!-- Auto Banner Section -->
+    <section class="banner">
+      <div class="banner-container">
+        <div
+          class="banner-slide"
+          style="background-image: url('img/banner1.jpg')"
+        ></div>
+        <div
+          class="banner-slide"
+          style="background-image: url('img/banner2.jpg')"
+        ></div>
+        <div
+          class="banner-slide"
+          style="background-image: url('img/banner3.jpg')"
+        ></div>
+      </div>
+    </section>
+
+    <!-- Product Section -->
+    <section class="products">
+      <h2>Featured Products</h2>
+      <div class="product-grid">
+        <div
+          class="product-box"
+          onclick="openFullscreen('img/product1.jpg', 'Elegant Shoulder Bag', '$120', 'Premium leather shoulder bag with gold hardware and adjustable strap.')"
+        >
+          <img src="img/product1.jpg" alt="Elegant Shoulder Bag" />
+          <h3>Elegant Shoulder Bag</h3>
+          <p>$120</p>
+        </div>
+        <div
+          class="product-box"
+          onclick="openFullscreen('img/product2.jpg', 'Luxury Tote Bag', '$150', 'Spacious canvas tote with leather trim and laptop sleeve.')"
+        >
+          <img src="img/product2.jpg" alt="Luxury Tote Bag" />
+          <h3>Luxury Tote Bag</h3>
+          <p>$150</p>
+        </div>
+        <div
+          class="product-box"
+          onclick="openFullscreen('img/product3.jpg', 'Classic Clutch Bag', '$90', 'Sleek metallic clutch with removable chain strap.')"
+        >
+          <img src="img/product3.jpg" alt="Classic Clutch Bag" />
+          <h3>Classic Clutch Bag</h3>
+          <p>$90</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        &copy; 2025 My Bag. All Rights Reserved. | Based in Wembley Designer
+        Outlet
+      </p>
+    </footer>
+
+    <!-- Fullscreen Modal -->
+    <div id="fullscreenModal" class="modal hidden">
+      <span class="close" onclick="closeFullscreen()">&times;</span>
+      <img id="modalImage" class="modal-content" />
+      <div id="modalCaption"></div>
+    </div>
+  </body>
+</html>

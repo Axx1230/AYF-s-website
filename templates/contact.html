@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Anas Yusuf Farhan | Contact{% endblock %}
+
+{% block body_class %}bg-[#0A0A0E] text-white font-sans antialiased selection:bg-[#00E5FF] selection:text-[#0A0A0E]
+flex flex-col min-h-screen{% endblock %}
+
+{% block nav_class %}bg-[#0A0A0E]/95{% endblock %}
+{% block nav_border %}border-b border-[#00E5FF]/20{% endblock %}
+{% block nav_brand_color %}text-white{% endblock %}
+{% block nav_text_color %}text-slate-300{% endblock %}
+{% block contact_link_class %}text-[#00E5FF]{% endblock %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center py-24 px-4">
+    <div class="max-w-3xl w-full text-center">
+        <p class="text-sm uppercase tracking-[0.3em] text-[#00E5FF]/80 mb-4">Let's work together</p>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-[#F8F9FA]">Built for business owners, product teams, and fast-moving startups.</h1>
+        <p class="text-xl text-slate-300 mb-12 leading-relaxed">
+            I build backend systems, automation scripts, and API integrations that reduce manual work and keep your business running smoothly. Share your challenge and I will deliver a reliable, scalable solution.
+        </p>
+
+        <div class="grid gap-6 sm:grid-cols-2 mb-12">
+            <a href="mailto:axx46616@gmail.com"
+                class="inline-flex flex-col items-start justify-center rounded-[1.5rem] border border-[#9D4EDD]/30 bg-[#09090f] px-8 py-6 text-left transition hover:-translate-y-1 hover:border-[#9D4EDD] shadow-[0_20px_60px_rgba(157,78,221,0.16)]">
+                <span class="text-sm uppercase tracking-[0.3em] text-[#FFEA00]/80 mb-3">Email</span>
+                <span class="text-lg font-semibold text-white">axx46616@gmail.com</span>
+            </a>
+
+            <a href="mailto:anas12340@outlook.com"
+                class="inline-flex flex-col items-start justify-center rounded-[1.5rem] border border-[#00E5FF]/20 bg-[#09090f] px-8 py-6 text-left transition hover:-translate-y-1 hover:border-[#00E5FF] shadow-[0_20px_60px_rgba(0,229,255,0.12)]">
+                <span class="text-sm uppercase tracking-[0.3em] text-[#FFEA00]/80 mb-3">Alternative</span>
+                <span class="text-lg font-semibold text-white">anas12340@outlook.com</span>
+            </a>
+        </div>
+
+        <div class="pt-8 border-t border-[#00E5FF]/10">
+            <p class="text-slate-400 mb-4">Connect with me elsewhere:</p>
+            <div class="flex justify-center gap-6 text-2xl">
+                <a href="https://github.com/yourusername" target="_blank"
+                    class="text-slate-300 hover:text-[#00E5FF] transition"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-slate-300 hover:text-[#00E5FF] transition"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

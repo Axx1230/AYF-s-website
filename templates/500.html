@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Server Error | Portfolio{% endblock %}
+
+{% block content %}
+<div class="flex-grow flex items-center justify-center px-4 py-24 bg-[#0A0A0E] text-white">
+    <div class="text-center rounded-[2rem] border border-[#00E5FF]/15 bg-[#07070b]/95 p-16 shadow-[0_30px_80px_rgba(0,229,255,0.12)]">
+        <h1 class="text-6xl font-bold text-[#FFEA00] mb-4">500</h1>
+        <p class="text-2xl text-slate-200 mb-8">Server Error</p>
+        <p class="text-slate-400 mb-12 max-w-md mx-auto">Something went wrong on our end. Please try again later or contact me for assistance.</p>
+        <a href="{{ url_for('home') }}"
+            class="inline-block rounded-full bg-[#9D4EDD] px-8 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-white hover:bg-[#7b3dc0] transition shadow-[0_15px_40px_rgba(157,78,221,0.25)]">
+            Return Home
+        </a>
+    </div>
+</div>
+{% endblock %}

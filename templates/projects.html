@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Projects | Portfolio{% endblock %}
+
+{% block projects_link_class %}text-[#00E5FF]{% endblock %}
+
+{% block content %}
+<section class="section-hero py-24">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-14">
+            <p class="hero-badge mx-auto inline-block">Work & Demos</p>
+            <h1 class="mt-6 text-5xl font-extrabold hero-title">High-impact projects built for reliable business results.</h1>
+            <p class="mt-6 text-lg text-slate-300 max-w-3xl mx-auto">Browse live applications, production-ready backend work, and Python automation programs with accessible demos and source links.</p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+            {% for project in projects %}
+            <article class="project-card">
+                <div class="project-card__image">
+                    <img src="{{ url_for('static', filename=project.image_url) }}" alt="{{ project.title }} preview">
+                    <div class="project-card__overlay"></div>
+                </div>
+                <div class="project-card__content">
+                    <span class="hero-badge">{{ project.category }}</span>
+                    <h2 class="project-card__title mt-5 text-2xl font-semibold">{{ project.title }}</h2>
+                    <p class="mt-4 text-slate-300 leading-relaxed">{{ project.summary }}</p>
+                    <div class="project-card__tags mt-6">
+                        {% for tag in project.tech %}
+                        <span class="tag-pill">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3">
+                        {% if project.demo_url %}
+                        <a href="{{ project.demo_url }}" class="btn btn-primary">Live demo</a>
+                        {% endif %}
+                        <a href="{{ url_for('project_detail', slug=project.slug) }}" class="btn btn-secondary">Read story</a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

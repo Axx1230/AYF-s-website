@@ -1,0 +1,20 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title>Quiz Engine</title>
+  <defs>
+    <linearGradient id="quizShade" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#9D4EDD" />
+      <stop offset="100%" stop-color="#00E5FF" />
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="#09090d" />
+  <rect x="150" y="120" width="980" height="480" rx="36" fill="#08080c" stroke="url(#quizShade)" stroke-width="12" />
+  <g fill="#F8F9FA" opacity="0.95">
+    <circle cx="320" cy="260" r="34" fill="#00E5FF" />
+    <rect x="420" y="240" width="440" height="30" rx="15" />
+    <rect x="420" y="290" width="520" height="24" rx="12" />
+    <rect x="420" y="336" width="260" height="24" rx="12" />
+    <rect x="420" y="382" width="520" height="24" rx="12" />
+  </g>
+  <path d="M250 470 C350 430 520 450 620 410" stroke="#FFEA00" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.9" />
+  <path d="M660 520 Q760 470 860 520" stroke="#9D4EDD" stroke-width="10" fill="none" opacity="0.9" />
+</svg>

@@ -1,0 +1,15 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title>Snake Arcade</title>
+  <defs>
+    <linearGradient id="snakeGlow" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#FFEA00" />
+      <stop offset="100%" stop-color="#00E5FF" />
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="#08080d" />
+  <rect x="140" y="120" width="1000" height="480" rx="34" fill="#07070b" stroke="url(#snakeGlow)" stroke-width="10" />
+  <path d="M240 420 h140 v-80 h140 v120 h120 v-90 h120 v100" fill="none" stroke="#FFEA00" stroke-width="22" stroke-linecap="round" />
+  <circle cx="320" cy="300" r="24" fill="#00E5FF" />
+  <circle cx="560" cy="380" r="24" fill="#9D4EDD" />
+  <circle cx="760" cy="330" r="24" fill="#FFEA00" />
+</svg>

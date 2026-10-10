@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trends - My Bag</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script defer src="js/scripts.js"></script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <div class="topnav">
+      <a href="index.html" title="Home - Browse our collection of designer bags">My Bag</a>
+      <div id="myLinks">
+        <a href="offers.html" title="Special offers and discounts">Offers</a>
+        <a href="limited-stock.html" title="Limited edition and exclusive bags">Limited Stock</a>
+        <a href="oneofone.html" title="Unique, one-of-a-kind pieces">One Of One</a>
+        <a href="styles.html" title="Get inspired with styling tips">Style Inspiration</a>
+        <a href="gallery.html" title="View our complete collection">Product Gallery</a>
+        <a href="trends.html" class="active" title="Latest fashion trends">Trends</a>
+        <a href="contact.html" title="Get in touch with us">Contact</a>
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+
+    <!-- Trends Section -->
+    <section class="products">
+      <h2>Trendy Bags</h2>
+      <p>Stay ahead of the fashion curve with the latest bag trends. From sleek minimalist designs to bold, statement pieces, find the trendiest bags for every occasion.</p>
+
+      <!-- Product Grid -->
+      <div class="product-grid">
+        <div class="product-box" onclick="openFullscreen('trend1.jpg', 'Sleek Crossbody', '$80')">
+          <img src="images/trend1.jpg" alt="Sleek Crossbody" />
+          <h3>Sleek Crossbody</h3>
+          <p>$80</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('trend2.jpg', 'MinimalistTote', '$120')">
+          <img src="images/trend2.jpg" alt="Minimalist Tote" />
+          <h3>Minimalist Tote</h3>
+          <p>$120</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('trend3.jpg', 'Bold Statement Clutch', '$60')">
+          <img src="images/trend3.jpg" alt="Bold Statement Clutch" />
+          <h3>Bold Statement Clutch</h3>
+          <p>$60</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('trend4.jpg', 'Oversized Hobo Bag', '$150')">
+          <img src="images/trend4.jpg" alt="Oversized Hobo Bag" />
+          <h3>Oversized Hobo Bag</h3>
+          <p>$150</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('trend5.jpg', 'Retro Backpack', '$100')">
+          <img src="images/trend5.jpg" alt="Retro Backpack" />
+          <h3>Retro Backpack</h3>
+          <p>$100</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('trend6.jpg', 'Eco-Friendly Shopper', '$45')">
+          <img src="images/trend6.jpg" alt="Eco-Friendly Shopper" />
+          <h3>Eco-Friendly Shopper</h3>
+          <p>$45</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 My Bag. All Rights Reserved. | Based in Wembley Designer Outlet</p>
+    </footer>
+
+    <!-- Fullscreen Modal -->
+    <div id="fullscreenModal" class="modal hidden">
+      <span class="close" onclick="closeFullscreen()">&times;</span>
+      <img id="modalImage" class="modal-content" />
+      <div id="modalCaption"></div>
+    </div>
+  </body>
+</html>

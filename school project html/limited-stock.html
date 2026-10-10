@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Limited Stock - My Bag</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script defer src="js/scripts.js"></script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <div class="topnav">
+      <a href="index.html" title="Home - Browse our collection of designer bags">My Bag</a>
+      <div id="myLinks">
+        <a href="offers.html" title="Special offers and discounts">Offers</a>
+        <a href="limited-stock.html" class="active" title="Limited edition and exclusive bags">Limited Stock</a>
+        <a href="oneofone.html" title="Unique, one-of-a-kind pieces">One Of One</a>
+        <a href="styles.html" title="Get inspired with styling tips">Style Inspiration</a>
+        <a href="gallery.html" title="View our complete collection">Product Gallery</a>
+        <a href="trends.html" title="Latest fashion trends">Trends</a>
+        <a href="contact.html" title="Get in touch with us">Contact</a>
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+
+    <!-- Limited Stock Section -->
+    <section class="products">
+      <h2>Limited Stock Bags</h2>
+      <p>Discover exclusive bags available in limited stock! Hurry, once they're gone, they're gone!</p>
+
+      <!-- Product Grid -->
+      <div class="product-grid">
+        <div class="product-box" onclick="openFullscreen('limited1.jpg', 'Limited Edition Backpack', '$100')">
+          <img src="images/limited1.jpg" alt="Limited Edition Backpack" />
+          <h3>Limited Edition Backpack</h3>
+          <p>$100</p>
+          <p class="stock-status">Only 3 Left!</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('limited2.jpg', 'Exclusive Crossbody Bag', '$75')">
+          <img src="images/limited2.jpg" alt="Exclusive Crossbody Bag" />
+          <h3>Exclusive Crossbody Bag</h3>
+          <p>$75</p>
+          <p class="stock-status">Only 5 Left!</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('limited3.jpg', 'Luxury Tote', '$180')">
+          <img src="images/limited3.jpg" alt="Luxury Tote" />
+          <h3>Luxury Tote</h3>
+          <p>$180</p>
+          <p class="stock-status">Only 2 Left!</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('limited4.jpg', 'Vintage Messenger Bag', '$120')">
+          <img src="images/limited4.jpg" alt="Vintage Messenger Bag" />
+          <h3>Vintage Messenger Bag</h3>
+          <p>$120</p>
+          <p class="stock-status">Only 1 Left!</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('limited5.jpg', 'Urban Sling Bag', '$90')">
+          <img src="images/limited5.jpg" alt="Urban Sling Bag" />
+          <h3>Urban Sling Bag</h3>
+          <p>$90</p>
+          <p class="stock-status">Only 4 Left!</p>
+        </div>
+        <div class="product-box" onclick="openFullscreen('limited6.jpg', 'Travel Duffel Bag', '$150')">
+          <img src="images/limited6.jpg" alt="Travel Duffel Bag" />
+          <h3>Travel Duffel Bag</h3>
+          <p>$150</p>
+          <p class="stock-status">Only 3 Left!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 My Bag. All Rights Reserved. | Based in Wembley Designer Outlet</p>
+    </footer>
+
+    <!-- Fullscreen Modal -->
+    <div id="fullscreenModal" class="modal hidden">
+      <span class="close" onclick="closeFullscreen()">&times;</span>
+      <img id="modalImage" class="modal-content" />
+      <div id="modalCaption"></div>
+    </div>
+  </body>
+</html>

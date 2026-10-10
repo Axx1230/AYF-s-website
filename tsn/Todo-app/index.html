@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibrant Notes</title>
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg, #f0f4f8);
+    color: var(--text, #222);
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+    transition: background 0.4s, color 0.4s;
+}
+
+.dark-mode {
+    --bg: #181c1f;
+    --text: #e6e6e6;
+    --container-bg: #23272b;
+    --input-bg: #23272b;
+    --input-border: #444;
+    --input-text: #e6e6e6;
+    --btn-bg: #2d7d46;
+    --btn-hover: #34c759;
+    --del-btn-bg: #b3261e;
+    --del-btn-hover: #ff3b30;
+    --note-bg: #23272b;
+    --note-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    --scrollbar-thumb: #444;
+}
+
+.container {
+    background: var(--container-bg, #fff);
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 380px;
+    max-width: 95%;
+    transition: background 0.4s;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    animation: titleColorChange 5s infinite alternate;
+}
+
+@keyframes titleColorChange {
+    0% { color: #ff6347; }
+    25% { color: #4682b4; }
+    50% { color: #32cd32; }
+    75% { color: #ff4500; }
+    100% { color: #8a2be2; }
+}
+
+#new-todo {
+    width: calc(100% - 70px);
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--input-border, #ccc);
+    background: var(--input-bg, #fff);
+    color: var(--input-text, #222);
+    font-size: 16px;
+    transition: all 0.2s;
+}
+
+#new-todo:focus {
+    border-color: var(--btn-bg, #34c759);
+    box-shadow: 0 0 8px rgba(52, 199, 89, 0.3);
+    outline: none;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    outline: none;
+}
+
+#add { background: var(--btn-bg, #34c759); color: #fff; }
+#add:hover { background: var(--btn-hover, #28a745); transform: translateY(-2px); }
+
+.delete-btn { background: var(--del-btn-bg, #ff3b30); color: #fff; }
+.delete-btn:hover { background: var(--del-btn-hover, #e02a1c); transform: scale(1.1); }
+
+ul#todos { list-style: none; padding: 0; margin-top: 20px; max-height: 400px; overflow-y: auto; }
+ul#todos li {
+    background: var(--note-bg, #fff8f0);
+    margin-bottom: 12px;
+    padding: 12px 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--note-shadow, 0 4px 10px rgba(0,0,0,0.05));
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+ul#todos li.show { opacity: 1; transform: translateY(0); }
+ul#todos li:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
+.done { text-decoration: line-through; color: #888; transition: all 0.3s; }
+
+ul#todos::-webkit-scrollbar { width: 6px; }
+ul#todos::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb, #ccc); border-radius: 3px; }
+
+.visually-hidden { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="main-title">My Vibrant Notes</h1>
+    <div style="display:flex;">
+        <label for="new-todo" class="visually-hidden">Add a note</label>
+        <input type="text" id="new-todo" placeholder="Write a note..." aria-label="Add a note">
+        <button id="add" aria-label="Add note">Add</button>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin: 15px 0 5px 0;">
+        <div id="filters" role="group" aria-label="Filter notes">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="active">Active</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+        <button id="clear-completed" style="background:var(--container-bg,#eee); color:#c00; border:none; border-radius:8px; padding:5px 10px; cursor:pointer;" aria-label="Clear completed notes">Clear Completed</button>
+        <button id="toggle-dark" style="background:var(--btn-bg,#222); color:#fff; border:none; border-radius:8px; padding:5px 10px; cursor:pointer; margin-left:8px; transition:background 0.3s;" aria-label="Toggle dark mode">🌙</button>
+    </div>
+    <ul id="todos" aria-label="Notes list"></ul>
+</div>
+
+<script>
+const input = document.getElementById('new-todo');
+const addBtn = document.getElementById('add');
+const todos = document.getElementById('todos');
+const filters = document.getElementById('filters');
+const clearCompletedBtn = document.getElementById('clear-completed');
+const toggleDarkBtn = document.getElementById('toggle-dark');
+
+let todoList = [];
+let filter = 'all';
+
+function randomPastel() { const hue = Math.floor(Math.random()*360); return `hsl(${hue},70%,90%)`; }
+function saveTodos() { localStorage.setItem('todos-vibrant', JSON.stringify(todoList)); }
+function loadTodos() { const data = localStorage.getItem('todos-vibrant'); todoList = data?JSON.parse(data):[]; }
+
+function renderTodos() {
+    todos.innerHTML = '';
+    let filtered = todoList;
+    if(filter==='active') filtered = todoList.filter(t=>!t.done);
+    if(filter==='completed') filtered = todoList.filter(t=>t.done);
+    filtered.forEach((todo, idx)=>{
+        const li=document.createElement('li');
+        li.style.background=document.body.classList.contains('dark-mode')?'var(--note-bg,#23272b)':(todo.bg||randomPastel());
+        if(todo.done) li.classList.add('done');
+        const span=document.createElement('span');
+        span.textContent=todo.text;
+        span.tabIndex=0;
+        span.addEventListener('dblclick',()=>startEditTodo(idx,span,li));
+        span.addEventListener('click',()=>toggleDone(idx));
+        span.addEventListener('keypress',e=>{if(e.key==='Enter') toggleDone(idx);});
+        if(todo.done) span.classList.add('done');
+        const delBtn=document.createElement('button');
+        delBtn.textContent='X'; delBtn.classList.add('delete-btn');
+        delBtn.addEventListener('click',()=>deleteTodo(idx));
+        li.appendChild(span); li.appendChild(delBtn); todos.appendChild(li);
+        setTimeout(()=>li.classList.add('show'),10);
+    });
+}
+
+function addTodo(text){ todoList.push({text,done:false,bg:randomPastel()}); saveTodos(); renderTodos(); }
+function toggleDone(idx){ todoList[idx].done=!todoList[idx].done; saveTodos(); renderTodos(); }
+function deleteTodo(idx){ todoList.splice(idx,1); saveTodos(); renderTodos(); }
+
+function startEditTodo(idx, span, li){
+    const inputEdit=document.createElement('input');
+    inputEdit.type='text'; inputEdit.value=todoList[idx].text;
+    inputEdit.style.width='70%'; inputEdit.className='edit-input';
+    li.replaceChild(inputEdit,span); inputEdit.focus();
+    inputEdit.addEventListener('blur',()=>finishEditTodo(idx,inputEdit,li));
+    inputEdit.addEventListener('keydown',e=>{
+        if(e.key==='Enter') inputEdit.blur();
+        if(e.key==='Escape') renderTodos();
+    });
+}
+function finishEditTodo(idx,inputEdit,li){ const val=inputEdit.value.trim(); if(val) todoList[idx].text=val; saveTodos(); renderTodos(); }
+
+addBtn.addEventListener('click',()=>{const text=input.value.trim(); if(text){addTodo(text); input.value=''; input.focus();}});
+input.addEventListener('keypress',e=>{if(e.key==='Enter') addBtn.click();});
+filters.addEventListener('click',e=>{if(e.target.classList.contains('filter-btn')){document.querySelectorAll('.filter-btn').forEach(btn=>btn.classList.remove('active')); e.target.classList.add('active'); filter=e.target.dataset.filter; renderTodos();}});
+clearCompletedBtn.addEventListener('click',()=>{todoList=todoList.filter(t=>!t.done); saveTodos(); renderTodos();});
+toggleDarkBtn.addEventListener('click',()=>{document.body.classList.toggle('dark-mode'); toggleDarkBtn.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙';});
+
+window.onload=()=>{
+    loadTodos(); renderTodos(); input.focus();
+    if(localStorage.getItem('dark-mode')==='1'){document.body.classList.add('dark-mode'); toggleDarkBtn.textContent='☀️';}
+};
+const observer=new MutationObserver(()=>{localStorage.setItem('dark-mode',document.body.classList.contains('dark-mode')?'1':'0');});
+observer.observe(document.body,{attributes:true,attributeFilter:['class']});
+</script>
+</body>
+</html>
